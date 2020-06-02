@@ -55,6 +55,11 @@ void btConvexHullShape::addPoint(const btVector3& point, bool recalculateLocalAa
 		recalcLocalAabb();
 }
 
+void btConvexHullShape::reset()
+{
+	m_unscaledPoints.clear();
+}
+
 btVector3 btConvexHullShape::localGetSupportingVertexWithoutMargin(const btVector3& vec) const
 {
 	btVector3 supVec(btScalar(0.), btScalar(0.), btScalar(0.));

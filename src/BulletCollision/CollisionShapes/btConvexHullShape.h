@@ -37,6 +37,9 @@ public:
 
 	void addPoint(const btVector3& point, bool recalculateLocalAabb = true);
 
+	/// clears the internal container of the points of the convex hull
+	void reset();
+
 	btVector3* getUnscaledPoints()
 	{
 		return &m_unscaledPoints[0];
