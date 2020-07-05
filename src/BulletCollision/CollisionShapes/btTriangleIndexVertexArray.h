@@ -45,13 +45,20 @@ btIndexedMesh
 	// mesh data in single precision..
 	PHY_ScalarType m_vertexType;
 
+	// @optional: The vertices data, in case the user wants to store the data into this structure (just floats)
+	float* m_vertexDataPtr;
+	// @optional: The indices data, in case the user wants to store the data into this structure (just ints)
+	int* m_triangleDataPtr;
+
 	btIndexedMesh()
 		: m_indexType(PHY_INTEGER),
 #ifdef BT_USE_DOUBLE_PRECISION
-		  m_vertexType(PHY_DOUBLE)
+		  m_vertexType(PHY_DOUBLE),
 #else   // BT_USE_DOUBLE_PRECISION
-		  m_vertexType(PHY_FLOAT)
+		  m_vertexType(PHY_FLOAT),
 #endif  // BT_USE_DOUBLE_PRECISION
+		  m_vertexDataPtr(NULL),
+		  m_triangleDataPtr(NULL)
 	{
 	}
 };

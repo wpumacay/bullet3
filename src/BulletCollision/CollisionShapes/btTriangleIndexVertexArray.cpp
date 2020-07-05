@@ -32,6 +32,15 @@ btTriangleIndexVertexArray::btTriangleIndexVertexArray(int numTriangles, int* tr
 
 btTriangleIndexVertexArray::~btTriangleIndexVertexArray()
 {
+	for ( ssize_t i = 0; i < m_indexedMeshes.size(); i++ )
+	{
+		// Release user-buffers in case the user stored the data right into the struct
+		auto& indexed_mesh = m_indexedMeshes[i];
+		if ( indexed_mesh.m_vertexDataPtr )
+			delete[] indexed_mesh.m_vertexDataPtr;
+		if ( indexed_mesh.m_triangleDataPtr )
+			delete[] indexed_mesh.m_triangleDataPtr;
+	}
 }
 
 void btTriangleIndexVertexArray::getLockedVertexIndexBase(unsigned char** vertexbase, int& numverts, PHY_ScalarType& type, int& vertexStride, unsigned char** indexbase, int& indexstride, int& numfaces, PHY_ScalarType& indicestype, int subpart)
